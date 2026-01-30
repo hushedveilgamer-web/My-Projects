@@ -3,7 +3,7 @@ version: 1.0.0
 description: Complete SMP plugin for HushSMP Server
 author: HushSMP
 main: com.hushmcsmp.hushsmp.HushSMP
-api-version: 1.20
+api-version: 1.21
 
 commands:
   store:
