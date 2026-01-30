@@ -1,0 +1,54 @@
+name: HushSMP
+version: 1.0.0
+description: Complete SMP plugin for HushSMP Server
+author: HushSMP
+main: com.hushmcsmp.hushsmp.HushSMP
+api-version: 1.21
+
+commands:
+  store:
+    description: Open the store to get free items with keys
+    usage: /store
+  shop:
+    description: Open the shop to buy items
+    usage: /shop
+  ah:
+    description: Open the auction house
+    aliases: [auction]
+    usage: /ah [sell/buy]
+  sell:
+    description: Quick sell items for money
+    usage: /sell [amount]
+  rtp:
+    description: Random teleport to RTP zones
+    usage: /rtp
+  sethome:
+    description: Set your home location
+    usage: /sethome [name]
+  home:
+    description: Teleport to your home
+    usage: /home [name]
+  delhome:
+    description: Delete a home
+    usage: /delhome [name]
+  homes:
+    description: List all your homes
+    usage: /homes
+  team:
+    description: Team management
+    usage: /team [create/invite/leave/home]
+  duel:
+    description: Challenge someone to a duel
+    usage: /duel [player]
+  shards:
+    description: Check your shards balance
+    usage: /shards
+  shard:
+    description: Shard shop and management
+    usage: /shard [shop/balance]
+  money:
+    description: Check your money balance
+    usage: /money
+  afk:
+    description: Toggle AFK mode
+    usage: /afk
