@@ -21,6 +21,8 @@ public class PlayerJoinListener implements Listener {
         event.getPlayer().sendMessage("§bUse §7/store §bto get free items with keys!");
         event.getPlayer().sendMessage("§bUse §7/sethome §bto set your base!");
         event.getPlayer().sendMessage("§bUse §7/rtp §bto explore the world!");
+        plugin.getStatManager().playerLogin(event.getPlayer());
+        plugin.getScoreboardManager().updateScoreboard(event.getPlayer());
     }
     
     @EventHandler
@@ -29,6 +31,7 @@ public class PlayerJoinListener implements Listener {
         plugin.getTeamManager().saveTeams();
         plugin.getEconomyManager().saveMoney();
         plugin.getShardManager().saveShards();
+        plugin.getStatManager().playerQuit(event.getPlayer());
         event.setQuitMessage("§c" + event.getPlayer().getName() + " §cleft!");
     }
 }

@@ -62,11 +62,12 @@ public class AuctionCommand implements CommandExecutor {
                 player.sendMessage("§cUsage: /ah buy <auctionId>");
                 return true;
             }
-            
             try {
                 int id = Integer.parseInt(args[1]);
                 if (plugin.getAuctionManager().buyAuction(player.getUniqueId(), id, plugin.getEconomyManager())) {
                     player.sendMessage("§aPurchase successful!");
+                    // Update scoreboard after purchase
+                    plugin.getScoreboardManager().updateScoreboard(player);
                 } else {
                     player.sendMessage("§cCannot afford this item!");
                 }

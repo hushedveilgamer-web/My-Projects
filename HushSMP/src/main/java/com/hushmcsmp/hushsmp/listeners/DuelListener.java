@@ -28,6 +28,12 @@ public class DuelListener implements Listener {
                 
                 victim.sendMessage("§cYou lost the duel! -$5000");
                 
+                // Track kills/deaths
+                plugin.getStatManager().addKill(killer.getUniqueId());
+                plugin.getStatManager().addDeath(victim.getUniqueId());
+                plugin.getScoreboardManager().updateScoreboard(killer);
+                plugin.getScoreboardManager().updateScoreboard(victim);
+                
                 // End the duel
                 plugin.getDuelManager().endDuel(victim.getUniqueId());
                 plugin.getDuelManager().endDuel(killer.getUniqueId());

@@ -9,7 +9,9 @@ com/hushmcsmp/hushsmp/HushSMP.class
 com/hushmcsmp/hushsmp/listeners/DuelListener.class
 com/hushmcsmp/hushsmp/managers/StoreManager.class
 com/hushmcsmp/hushsmp/commands/HomeCommand.class
+com/hushmcsmp/hushsmp/listeners/RTPListener.class
 com/hushmcsmp/hushsmp/commands/MoneyCommand.class
+com/hushmcsmp/hushsmp/managers/StatManager.class
 com/hushmcsmp/hushsmp/managers/DuelManager.class
 com/hushmcsmp/hushsmp/managers/ShardManager.class
 com/hushmcsmp/hushsmp/listeners/PlayerJoinListener.class
@@ -18,9 +20,11 @@ com/hushmcsmp/hushsmp/managers/RTPManager.class
 com/hushmcsmp/hushsmp/managers/AFKManager.class
 com/hushmcsmp/hushsmp/commands/SellCommand.class
 com/hushmcsmp/hushsmp/managers/AuctionManager$AuctionItem.class
+com/hushmcsmp/hushsmp/listeners/ShopListener.class
 com/hushmcsmp/hushsmp/commands/TeamCommand.class
 com/hushmcsmp/hushsmp/commands/DuelCommand.class
 com/hushmcsmp/hushsmp/commands/StoreCommand.class
+com/hushmcsmp/hushsmp/managers/ScoreboardManager.class
 com/hushmcsmp/hushsmp/managers/EconomyManager.class
 com/hushmcsmp/hushsmp/commands/AFKCommand.class
 com/hushmcsmp/hushsmp/managers/AuctionManager.class

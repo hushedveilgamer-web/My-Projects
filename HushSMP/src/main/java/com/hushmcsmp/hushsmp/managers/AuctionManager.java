@@ -26,11 +26,21 @@ public class AuctionManager {
         if (auctionId < 0 || auctionId >= auctions.size()) {
             return false;
         }
-        
         AuctionItem auction = auctions.get(auctionId);
         if (economy.canAfford(buyer, auction.getPrice())) {
             economy.removeMoney(buyer, auction.getPrice());
             economy.addMoney(auction.getSeller(), auction.getPrice());
+            // Deliver item to buyer
+            org.bukkit.entity.Player buyerPlayer = org.bukkit.Bukkit.getPlayer(buyer);
+            if (buyerPlayer != null && buyerPlayer.isOnline()) {
+                buyerPlayer.getInventory().addItem(auction.getItem().clone());
+                buyerPlayer.sendMessage("§aYou received your auction item!");
+            }
+            // Notify seller if online
+            org.bukkit.entity.Player sellerPlayer = org.bukkit.Bukkit.getPlayer(auction.getSeller());
+            if (sellerPlayer != null && sellerPlayer.isOnline()) {
+                sellerPlayer.sendMessage("§aYour auction item was sold for $" + auction.getPrice() + "!");
+            }
             auctions.remove(auctionId);
             return true;
         }

@@ -8,40 +8,69 @@ import java.util.*;
 public class RTPManager {
     
     private Plugin plugin;
-    private Map<String, RTPRegion> regions = new HashMap<>();
     private Random random = new Random();
-    
+    // Prices for each region
+    private final java.util.Map<String, Integer> rtpPrices = java.util.Map.of(
+        "overworld", 100,
+        "nether", 250,
+        "end", 500
+    );
+    // Region bounds for each world
+    private final java.util.Map<String, RTPRegion> regions = java.util.Map.of(
+        "overworld", new RTPRegion("overworld", -10000, -10000, 10000, 10000),
+        "nether", new RTPRegion("nether", -4000, -4000, 4000, 4000),
+        "end", new RTPRegion("end", -2000, -2000, 2000, 2000)
+    );
+
     public RTPManager(Plugin plugin) {
         this.plugin = plugin;
-        initializeRegions();
     }
-    
-    private void initializeRegions() {
-        regions.put("NA-East", new RTPRegion("NA-East", 0, 0, 5000, 5000));
-        regions.put("NA-West", new RTPRegion("NA-West", -5000, 0, 0, 5000));
-        regions.put("EU-Central", new RTPRegion("EU-Central", 0, 5000, 5000, 10000));
-        regions.put("Asia-Pacific", new RTPRegion("Asia-Pacific", 5000, 0, 10000, 5000));
-    }
-    
+
     public void teleportRandom(Player player, String region) {
+        region = region.toLowerCase();
         if (!regions.containsKey(region)) {
             player.sendMessage("§cRegion not found!");
             return;
         }
-        
+        int price = rtpPrices.getOrDefault(region, 100);
+        com.hushmcsmp.hushsmp.managers.EconomyManager eco = ((com.hushmcsmp.hushsmp.HushSMP)plugin).getEconomyManager();
+        if (!eco.canAfford(player.getUniqueId(), price)) {
+            player.sendMessage("§cYou need $" + price + " to use RTP here!");
+            return;
+        }
+        eco.removeMoney(player.getUniqueId(), price);
+        World world;
+        switch (region) {
+            case "nether":
+                world = Bukkit.getWorld("world_nether");
+                break;
+            case "end":
+                world = Bukkit.getWorld("world_the_end");
+                break;
+            default:
+                world = Bukkit.getWorlds().get(0);
+        }
         RTPRegion rtpRegion = regions.get(region);
         int x = rtpRegion.getMinX() + random.nextInt(rtpRegion.getMaxX() - rtpRegion.getMinX());
         int z = rtpRegion.getMinZ() + random.nextInt(rtpRegion.getMaxZ() - rtpRegion.getMinZ());
-        
-        World world = Bukkit.getWorlds().get(0);
-        Location location = new Location(world, x, world.getHighestBlockYAt(x, z) + 1, z);
-        
-        player.teleport(location);
-        player.sendMessage("§bTeleported to " + region + "!");
+        int y = (world != null) ? world.getHighestBlockYAt(x, z) + 1 : 100;
+        if (world == null) {
+            player.sendMessage("§cWorld not found for region: " + region);
+            return;
+        }
+        player.teleport(new Location(world, x, y, z));
+        player.sendMessage("§bTeleported to " + capitalize(region) + " for $" + price + "!");
+        // Update scoreboard after RTP
+        ((com.hushmcsmp.hushsmp.HushSMP)plugin).getScoreboardManager().updateScoreboard(player);
     }
-    
+
     public Map<String, RTPRegion> getRegions() {
         return regions;
+    }
+
+    private String capitalize(String s) {
+        if (s == null || s.isEmpty()) return s;
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
     
     public static class RTPRegion {

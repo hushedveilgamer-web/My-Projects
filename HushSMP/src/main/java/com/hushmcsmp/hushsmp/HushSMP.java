@@ -17,6 +17,8 @@ public class HushSMP extends JavaPlugin {
     private ShardManager shardManager;
     private RTPManager rtpManager;
     private AFKManager afkManager;
+    private StatManager statManager;
+    private ScoreboardManager scoreboardManager;
     
     @Override
     public void onEnable() {
@@ -33,6 +35,8 @@ public class HushSMP extends JavaPlugin {
         shardManager = new ShardManager(this);
         rtpManager = new RTPManager(this);
         afkManager = new AFKManager(this);
+        statManager = new StatManager(this);
+        scoreboardManager = new ScoreboardManager(this, statManager, economyManager, shardManager, rtpManager, storeManager);
         
         // Register commands
         new StoreCommand(this);
@@ -52,6 +56,8 @@ public class HushSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PvPListener(this), this);
         getServer().getPluginManager().registerEvents(new DuelListener(this), this);
         getServer().getPluginManager().registerEvents(new AFKListener(this), this);
+        getServer().getPluginManager().registerEvents(new ShopListener(this), this);
+        getServer().getPluginManager().registerEvents(new RTPListener(this), this);
         
         getLogger().info("§aHushSMP Plugin loaded successfully!");
     }
@@ -105,5 +111,13 @@ public class HushSMP extends JavaPlugin {
     
     public AFKManager getAFKManager() {
         return afkManager;
+    }
+    
+    public StatManager getStatManager() {
+        return statManager;
+    }
+    
+    public ScoreboardManager getScoreboardManager() {
+        return scoreboardManager;
     }
 }

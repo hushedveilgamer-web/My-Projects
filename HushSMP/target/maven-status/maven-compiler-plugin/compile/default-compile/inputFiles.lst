@@ -1,5 +1,8 @@
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/DuelCommand.java
+/workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/listeners/ShopListener.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/SellCommand.java
+/workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/ScoreboardManager.java
+/workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/listeners/RTPListener.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/DuelManager.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/ShardManager.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/RTPManager.java
@@ -8,6 +11,7 @@
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/AFKManager.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/MoneyCommand.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/ShardCommand.java
+/workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/managers/StatManager.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/RTPCommand.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/ShopCommand.java
 /workspaces/My-Projects/HushSMP/src/main/java/com/hushmcsmp/hushsmp/commands/StoreCommand.java

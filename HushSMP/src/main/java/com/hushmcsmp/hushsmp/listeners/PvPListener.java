@@ -21,6 +21,11 @@ public class PvPListener implements Listener {
         Player killer = victim.getKiller();
         
         if (killer != null) {
+            plugin.getStatManager().addKill(killer.getUniqueId());
+            plugin.getStatManager().addDeath(victim.getUniqueId());
+            plugin.getScoreboardManager().updateScoreboard(killer);
+            plugin.getScoreboardManager().updateScoreboard(victim);
+            
             // Award shards to killer (10 per kill, only once per player per session)
             plugin.getShardManager().addShards(killer.getUniqueId(), 10);
             killer.sendMessage("§b+10 shards for killing " + victim.getName());

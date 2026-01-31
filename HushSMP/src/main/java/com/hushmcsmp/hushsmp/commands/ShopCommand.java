@@ -34,41 +34,31 @@ public class ShopCommand implements CommandExecutor {
     
     private void openShopGUI(Player player) {
         Inventory inv = Bukkit.createInventory(null, 36, "§b§lSHOP");
-        
-        // Equipment
-        ItemStack helmet = createItem(Material.DIAMOND_HELMET, "§bDiamond Helmet", "§7$5000");
-        ItemStack chestplate = createItem(Material.DIAMOND_CHESTPLATE, "§bDiamond Chestplate", "§7$7000");
-        ItemStack leggings = createItem(Material.DIAMOND_LEGGINGS, "§bDiamond Leggings", "§7$6000");
-        ItemStack boots = createItem(Material.DIAMOND_BOOTS, "§bDiamond Boots", "§7$4000");
-        
-        inv.setItem(10, helmet);
-        inv.setItem(11, chestplate);
-        inv.setItem(12, leggings);
-        inv.setItem(13, boots);
-        
-        // Tools
-        ItemStack pickaxe = createItem(Material.DIAMOND_PICKAXE, "§bDiamond Pickaxe", "§7$3000");
-        ItemStack axe = createItem(Material.DIAMOND_AXE, "§bDiamond Axe", "§7$3000");
-        ItemStack shovel = createItem(Material.DIAMOND_SHOVEL, "§bDiamond Shovel", "§7$2000");
-        
-        inv.setItem(19, pickaxe);
-        inv.setItem(20, axe);
-        inv.setItem(21, shovel);
-        
-        // Items
-        ItemStack blaze = createItem(Material.BLAZE_ROD, "§bBlaze Rod (10)", "§7$500");
-        ItemStack shulker = createItem(Material.SHULKER_BOX, "§bShulker Box", "§7$2000");
-        ItemStack ender = createItem(Material.ENDER_CHEST, "§bEnder Chest", "§7$165");
-        
-        inv.setItem(28, blaze);
-        inv.setItem(29, shulker);
-        inv.setItem(30, ender);
-        
+
+        // Balanced items (all $60)
+        inv.setItem(10, createItem(Material.TOTEM_OF_UNDYING, "§eTotem of Undying", "§7$60"));
+        inv.setItem(11, createItem(Material.ENDER_PEARL, "§bEnder Pearl (8)", "§7$60"));
+        inv.setItem(12, createItem(Material.END_CRYSTAL, "§dEnd Crystal (2)", "§7$60"));
+        inv.setItem(13, createItem(Material.RESPAWN_ANCHOR, "§6Respawn Anchor", "§7$60"));
+        inv.setItem(14, createItem(Material.OBSIDIAN, "§8Obsidian (16)", "§7$60"));
+        inv.setItem(15, createItem(Material.GLOWSTONE, "§eGlowstone (16)", "§7$60"));
+        inv.setItem(16, createItem(Material.CRYING_OBSIDIAN, "§5Crying Obsidian (8)", "§7$60"));
+        inv.setItem(19, createItem(Material.TNT, "§cTNT (8)", "§7$60"));
+        inv.setItem(20, createItem(Material.SLIME_BLOCK, "§aSlime Block (8)", "§7$60"));
+        inv.setItem(21, createItem(Material.HONEY_BLOCK, "§6Honey Block (8)", "§7$60"));
+        inv.setItem(22, createItem(Material.ENDER_CHEST, "§9Ender Chest", "§7$60"));
+        inv.setItem(23, createItem(Material.SHULKER_BOX, "§dShulker Box", "§7$60"));
+
         player.openInventory(inv);
     }
     
     private ItemStack createItem(Material material, String name, String lore) {
-        ItemStack item = new ItemStack(material, 1);
+        int amount = 1;
+        if (name.contains("(8)")) amount = 8;
+        if (name.contains("(16)")) amount = 16;
+        if (name.contains("(2)")) amount = 2;
+        if (name.contains("(4)")) amount = 4;
+        ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(name);
